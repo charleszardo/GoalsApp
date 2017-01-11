@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe UsersController, type: :controller do
   describe "GET #new" do
-    it "renders the new links page" do
+    it "renders the new users page" do
       get :new, user: {}
 
       expect(response).to render_template("new")
