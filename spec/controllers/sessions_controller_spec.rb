@@ -21,6 +21,7 @@ RSpec.describe SessionsController, type: :controller do
 
     context "with valid params" do
       it "redirects to the goals index page" do
+        User.create!(username: "valid_user", password: "abcdef")
         post :create, user: {username: "valid_user", password: "abcdef"}
         expect(response).to redirect_to(goals_url)
       end
