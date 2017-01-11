@@ -11,7 +11,7 @@ RSpec.describe User, :type => :model do
 
     it "encrypts the password using BCrypt" do
       expect(BCrypt::Password).to receive(:create)
-      User.new(username: "mary_mack", password: "abcdef")
+      User.new(username: "test_user", password: "abcdef")
     end
   end
 
@@ -24,5 +24,6 @@ RSpec.describe User, :type => :model do
 
   it { should validate_presence_of(:username) }
   it { should validate_uniqueness_of(:username) }
+  it { should validate_length_of(:password).is_at_least(6) }
   # it { should have_many(:goals) }
 end
