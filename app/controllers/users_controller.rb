@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     @user = User.create(user_params)
 
     if @user.save
-
+      redirect_to goals_url
     else
       flash[:errors] = @user.errors.full_messages
       render :new
