@@ -2,7 +2,19 @@
 <h3>My Goals</h3>
 <ul>
 <% @user.goals.each do |g| %>
-<li><%= g.title %></li>
+  <% if g.public %>
+    <li><%= g.title %></li>
+  <% else %>
+    <% @private_goals << g %>
+  <% end %>
 <% end %>
 </ul>
+<% if current_user && @user == current_user %>
+  <h4>Private Goals</h4>
+  <ul>
+  <% @private_goals.each do |pg| %>
+    <li><%= pg.title %></li>
+  <% end %>
+  </ul>
+<% end %>
 <%= link_to "Add Goal", new_goal_url %>
