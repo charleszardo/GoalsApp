@@ -57,5 +57,5 @@ RSpec.describe User, :type => :model do
   it { should validate_presence_of(:session_token) }
   it { should validate_uniqueness_of(:session_token) }
   it { should validate_presence_of(:password_digest) }
-  # it { should have_many(:goals) }
+  it { should have_many(:goals) }
 end
