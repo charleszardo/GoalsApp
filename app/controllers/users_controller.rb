@@ -10,10 +10,16 @@ class UsersController < ApplicationController
 
     if @user.save
       login_user!(@user)
-      redirect_to goals_url
+      redirect_to user_url(@user)
     else
       flash[:errors] = @user.errors.full_messages
       render :new
     end
+  end
+
+  def show
+    @user = User.find(params[:id])
+
+    render :show
   end
 end
