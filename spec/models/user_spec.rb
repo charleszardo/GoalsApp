@@ -1,6 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe User, :type => :model do
+  subject(:user) do
+    build(:user)
+  end
 
   describe "password encryption" do
     it "does not save passwords to the database" do
@@ -17,8 +20,8 @@ RSpec.describe User, :type => :model do
 
   describe "session_token" do
     it "ensures session token" do
-      user = User.create!(username: "test_user", password: "abcdef")
       expect(user).to be_valid
+      expect(user.session_token).to_not be_nil
     end
   end
 
