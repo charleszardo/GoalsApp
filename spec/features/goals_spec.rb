@@ -49,6 +49,31 @@ feature "private goals" do
     expect(page).to_not have_content "my title"
   end
 end
+
+feature "public goals" do
+  before(:each) do
+    visit new_user_url
+    fill_in "Username", with: "user1"
+    fill_in "Password", with: "password"
+    click_on "submit"
+    click_on "Add Goal"
+    fill_in "Title", with: "my title"
+    fill_in "Body", with: "my body"
+    choose "Public"
+    click_on "submit"
+  end
+
+  scenario "all users" do
+    expect(page).to have_content "my title"
+    click_on "Logout"
+    visit new_user_url
+    fill_in "Username", with: "user2"
+    fill_in "Password", with: "password"
+    click_on "submit"
+    visit user_url(User.find_by_username("user1"))
+    expect(page).to have_content "my title"
+  end
+end
 #
 # feature "logging out" do
 #
