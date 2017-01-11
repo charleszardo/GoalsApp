@@ -1,5 +1,6 @@
 class Goal < ActiveRecord::Base
-  validates :user, :title, :public, :complete, presence: true
-
+  validates :user, :title, presence: true
+  validates :public, :complete, inclusion: { in: [ true, false ] }
+  
   belongs_to :user
 end

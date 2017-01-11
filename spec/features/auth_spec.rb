@@ -50,7 +50,7 @@ end
 feature "logging out" do
 
   scenario "begins with a logged out state" do
-    visit goals_url
+    visit users_url
     expect(page).to have_content "Sign Up"
     expect(page).to have_content "Sign In"
     expect(page).to_not have_content "Welcome"
@@ -62,7 +62,7 @@ feature "logging out" do
     fill_in "Password", with: "valid_password"
     click_on "submit"
     click_on "Logout"
-    expect(page).to_not have_content "valid_username"
+    expect(page).to_not have_content "Welcome"
   end
 
 end

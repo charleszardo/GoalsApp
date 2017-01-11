@@ -1,1 +1,11 @@
-
+<form action="<%= goals_url %>" method="post">
+<%= auth_token %>
+<label>Title<input type="text" name="goal[title]"></label>
+<br>
+<label>Body<textarea name="goal[body]"></textarea></label>
+<br>
+<input type="radio" name="goal[public]" value="false" checked>Private
+<input type="radio" name="goal[public]" value="true">Public
+<br>
+<input type="submit" value="submit">
+</form>

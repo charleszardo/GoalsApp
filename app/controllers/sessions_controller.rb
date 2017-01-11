@@ -19,6 +19,6 @@ class SessionsController < ApplicationController
 
   def destroy
     logout_user!(current_user) if current_user
-    redirect_to goals_url
+    redirect_to users_url
   end
 end

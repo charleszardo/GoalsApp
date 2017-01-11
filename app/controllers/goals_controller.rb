@@ -10,6 +10,7 @@ class GoalsController < ApplicationController
   def create
     @goal = Goal.new(goal_params)
     @goal.user = current_user
+    @goal.complete = false
 
     if @goal.save
       redirect_to user_url(current_user)
@@ -21,6 +22,6 @@ class GoalsController < ApplicationController
 
   private
   def goal_params
-    params.require(:goal).permit(:title, :body, :public, :complete)
+    params.require(:goal).permit(:title, :body, :public)
   end
 end
