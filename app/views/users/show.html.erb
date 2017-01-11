@@ -1,2 +1,8 @@
 <h3><%= @user.username %></h3>
 <h3>My Goals</h3>
+<ul>
+<% @user.goals.each do |g| %>
+<li><%= g.title %></li>
+<% end %>
+</ul>
+<%= link_to "Add Goal", new_goal_url %>
