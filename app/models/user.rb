@@ -11,6 +11,8 @@ class User < ActiveRecord::Base
 
   has_many :goals
   has_many :authored_comments, class_name: "Comment", foreign_key: :author_id
+  has_many :cheers_given, class_name: "Cheers"
+
 
   def self.find_by_username_and_password(username, password)
     user = User.find_by_username(username)
