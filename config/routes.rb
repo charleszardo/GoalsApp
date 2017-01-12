@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resource :session, only: [:new, :create, :destroy]
 
   resources :goals, only: [:new, :create, :show] do
+    resources :goal_comments, only: [:create]
     member do
       post :complete
       post :incomplete
