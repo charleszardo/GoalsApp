@@ -24,7 +24,7 @@
 <li><%= c.body %></li>
 <% end %>
 </ul>
-<form action="<%= goal_goal_comments_url(@goal.id) %>" method="post">
+<form action="<%= goal_comments_url(@goal.id) %>" method="post">
 <%= auth_token %>
 <label>Comment
 <textarea name="comment[body]" rows="8" cols="80"></textarea>

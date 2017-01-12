@@ -26,7 +26,7 @@
 <li><%= c.body %></li>
 <% end %>
 </ul>
-<form action="<%= user_user_comments_url(@user.id) %>" method="post">
+<form action="<%= user_comments_url(@user.id) %>" method="post">
 <%= auth_token %>
 <label>Comment
 <textarea name="comment[body]" rows="8" cols="80"></textarea>
