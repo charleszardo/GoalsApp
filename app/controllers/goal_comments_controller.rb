@@ -5,7 +5,7 @@ class GoalCommentsController < ApplicationController
     @comment.author = current_user
     @comment.save
 
-    redirect_to user_url(@comment.goal)
+    redirect_to goal_url(@comment.goal)
   end
 
   private
