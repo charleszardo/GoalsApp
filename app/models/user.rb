@@ -35,6 +35,22 @@ class User < ActiveRecord::Base
     BCrypt::Password.new(self.password_digest).is_password?(password)
   end
 
+  def has_remaining_cheers?
+    self.cheers_count > 0
+  end
+
+  def has_cheersed_goal?(goal)
+    !!Cheer.find_by(user: self, goal: goal)
+  end
+
+  def cheers_goal
+    self.cheers_count -= 1
+  end
+
+  def uncheers_goal
+    self.cheers_count += 1
+  end
+
   private
   def generate_session_token
     SecureRandom.urlsafe_base64(16)
