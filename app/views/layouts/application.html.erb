@@ -2,19 +2,26 @@
 <html>
 <head>
   <title>GoalsApp</title>
+  <%= stylesheet_link_tag   'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-<% if logged_in? %>
-Welcome, <%= current_user.username %>
-<%= button_to "Logout", session_url, method: :delete %>
-Cheers Remaining: <%= current_user.cheers_count %>
-<% else %>
-<%= link_to "Sign Up", new_user_url %>
-<%= link_to "Sign In", new_session_url %>
-<% end %>
-
+<header>
+  <nav>
+    <% if logged_in? %>
+    <span class="welcome">Welcome, <%= current_user.username %></span>
+    <span class="logout-button"><%= button_to "Logout", session_url, method: :delete %></span>
+    <div class="user-cheers-remaining">
+      Cheers Remaining: <%= current_user.cheers_count %>
+    </div>
+    <% else %>
+    <%= link_to "Sign Up", new_user_url %>
+    <%= link_to "Sign In", new_session_url %>
+    <% end %>
+  </nav>
+</header>
+<section>
 <%= yield %>
-
+</section>
 </body>
 </html>

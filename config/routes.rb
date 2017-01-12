@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root "goals#index"
+  root "users#index"
 
   resources :users, only: [:new, :create, :show, :index] do
     resources :comments, only: [:create]

@@ -33,8 +33,8 @@
 </ul>
 <form action="<%= goal_comments_url(@goal.id) %>" method="post">
 <%= auth_token %>
-<label>Comment
-<textarea name="comment[body]" rows="8" cols="80"></textarea>
+<label class="comment-label">Comment:
+<textarea class="comment-body" name="comment[body]" rows="8" cols="80"></textarea>
 </label>
 <input type="submit" value="submit">
 </form>
