@@ -13,3 +13,19 @@
   </tr>
   <% end %>
 </table>
+
+<h3>Top Users</h3>
+<table>
+  <tr>
+    <th>Rank</th>
+    <th>Goal</th>
+    <th>Total Cheers</th>
+  </tr>
+  <% @users.each_with_index do |u, idx| %>
+  <tr>
+    <td><%= idx + 1 %></td>
+    <td><%= link_to u.username, user_url(u) %></td>
+    <td><%= u.cheers_count %></td>
+  </tr>
+  <% end %>
+</table>

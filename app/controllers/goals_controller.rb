@@ -44,6 +44,9 @@ class GoalsController < ApplicationController
 
   def leaderboard
     @goals = Goal.top_goals
+    @users = User.top_users
+
+    render :leaderboard
   end
 
   private

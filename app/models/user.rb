@@ -13,10 +13,30 @@ class User < ActiveRecord::Base
   has_many :authored_comments, class_name: "Comment", foreign_key: :author_id
   has_many :cheers_given, class_name: "Cheers"
 
-
   def self.find_by_username_and_password(username, password)
     user = User.find_by_username(username)
     user && user.is_password?(password) ? user : nil
+  end
+
+  def self.top_users
+    query = <<-SQL
+      SELECT
+        users.*, COUNT(cheers.id) AS cheers_count
+      FROM
+        users
+      JOIN
+        goals ON goals.user_id = users.id
+      JOIN
+        cheers ON cheers.goal_id = cheers.id
+      GROUP BY
+        users.id
+      ORDER BY
+        COUNT(cheers.id) DESC
+      LIMIT
+        10
+    SQL
+
+    User.find_by_sql(query)
   end
 
   def password=(password)
