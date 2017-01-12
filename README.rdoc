@@ -1,28 +1,11 @@
-== README
+== Goals App
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Simple rails app that allows users to list goals and track completion. Goals may be listed as public or private.  Users can comment on goals or other users.  Users can also cheers goals.  App features unit, service, and integration testing using RSpec, Capybara, and Factory Girl.
 
-Things you may want to cover:
+=== To Run
 
-* Ruby version
+* Install dependencies: <tt>bundle install</tt>
 
-* System dependencies
+* Create database: <tt>rake db:create</tt>
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+* Start server: <tt>rails s</tt>
