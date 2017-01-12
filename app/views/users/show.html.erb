@@ -17,4 +17,19 @@
   <% end %>
   </ul>
 <% end %>
+<% if current_user && @user == current_user %>
 <%= link_to "Add Goal", new_goal_url %>
+<% end %>
+<h3>Comments</h3>
+<ul>
+<% @user.comments.each do |c| %>
+<li><%= c.body %></li>
+<% end %>
+</ul>
+<form action="<%= user_user_comments_url(@user.id) %>" method="post">
+<%= auth_token %>
+<label>Comment
+<textarea name="comment[body]" rows="8" cols="80"></textarea>
+</label>
+<input type="submit" value="submit">
+</form>

@@ -1,11 +1,11 @@
 class UserCommentsController < ApplicationController
   def create
     @comment = UserComment.create(comment_params)
-    @comment.user_id = params[:id]
+    @comment.user_id = params[:user_id]
     @comment.author = current_user
     @comment.save
 
-    redirect_to user_show(@comment.user)
+    redirect_to user_url(@comment.user)
   end
 
   private

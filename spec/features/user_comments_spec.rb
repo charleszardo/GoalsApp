@@ -15,14 +15,14 @@ feature "commenting" do
   end
 
   scenario "comment on another user" do
-    vist user_url(User.find_by_username("user1"))
+    visit user_url(User.find_by_username("user1"))
     fill_in "Comment", with: "this is my comment"
     click_on "submit"
     expect(page).to have_content "this is my comment"
   end
 
   scenario "comment on own page" do
-    vist user_url(User.find_by_username("user2"))
+    visit user_url(User.find_by_username("user2"))
     fill_in "Comment", with: "this is my comment"
     click_on "submit"
     expect(page).to have_content "this is my comment"
