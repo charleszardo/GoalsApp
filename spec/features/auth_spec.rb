@@ -21,7 +21,7 @@ feature "the signup process" do
     end
 
     scenario "redirects to users show page after sign up" do
-      expect(page).to have_content "My Goals"
+      expect(page).to have_content "Goals"
     end
 
   end
