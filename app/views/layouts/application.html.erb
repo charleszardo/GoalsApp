@@ -23,5 +23,13 @@
 <section>
 <%= yield %>
 </section>
+<footer>
+  <% unless current_page?(leaderboard_goals_url)  %>
+  <%= link_to "leaderboard", leaderboard_goals_url %>
+  <% end %>
+  <% unless current_page?(users_url)  %>
+  <%= link_to "home", users_url %>
+  <% end %>
+</footer>
 </body>
 </html>
