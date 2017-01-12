@@ -3,7 +3,6 @@ ol, ul {
 }
 nav {
  border-bottom: 1px solid black;
- padding: 20px;
 }
 .logout-button {
  display: inline-block;
@@ -11,7 +10,7 @@ nav {
 nav > * {
   margin: 5px 0;
 }
-section {
+nav, section, footer {
   padding: 20px;
 }
 
