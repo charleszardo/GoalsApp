@@ -6,4 +6,8 @@ class Goal < ActiveRecord::Base
 
   belongs_to :user
   has_many :cheers
+
+  def cheers_count
+    Cheer.where(goal: self).count
+  end
 end

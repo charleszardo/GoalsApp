@@ -45,10 +45,12 @@ class User < ActiveRecord::Base
 
   def cheers_goal
     self.cheers_count -= 1
+    self.save
   end
 
   def uncheers_goal
     self.cheers_count += 1
+    self.save
   end
 
   private
