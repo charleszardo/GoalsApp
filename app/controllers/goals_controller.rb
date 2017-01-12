@@ -26,6 +26,22 @@ class GoalsController < ApplicationController
     render :show
   end
 
+  def complete
+    @goal = Goal.find(params[:id])
+    @goal.complete = true
+    @goal.save
+
+    redirect_to goal_url(@goal)
+  end
+
+  def incomplete
+    @goal = Goal.find(params[:id])
+    @goal.complete = false
+    @goal.save
+
+    redirect_to goal_url(@goal)
+  end
+
   private
   def goal_params
     params.require(:goal).permit(:title, :body, :public)

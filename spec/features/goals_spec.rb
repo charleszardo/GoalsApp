@@ -94,12 +94,12 @@ feature "completing goals" do
 
   scenario "status changes to complete" do
     click_on "complete goal"
-    expect(page).to have_content "complete"
+    expect(page).to have_content "Status: complete"
   end
 
   scenario "status changes to incomplete" do
     click_on "complete goal"
-    click_on "goal still in progress"
-    expect(page).to_not have_content "complete"
+    click_on "incomplete goal"
+    expect(page).to_not have_content "Status: complete"
   end
 end

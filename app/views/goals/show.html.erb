@@ -7,5 +7,17 @@
 <p>
 <%= @goal.body %>
 </p>
+<% if @goal.complete %>
+  <h4>
+    Status: complete
+  </h4>
+  <%= button_to "incomplete goal", incomplete_goal_url(@goal) %>
+<% else %>
+  <h4>
+    Status: incomplete
+  </h4>
+  <%= button_to "complete goal", complete_goal_url(@goal) %>
+<% end %>
+
 <br>
 <%= link_to "back to #{@goal.user.username}", user_url(@goal.user) %>
