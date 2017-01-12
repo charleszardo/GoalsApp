@@ -1,0 +1,15 @@
+<h3>Top Goals</h3>
+<table>
+  <tr>
+    <th>Rank</th>
+    <th>Goal</th>
+    <th>Total Cheers</th>
+  </tr>
+  <% @goals.each_with_index do |g, idx| %>
+  <tr>
+    <td><%= idx + 1 %></td>
+    <td><%= link_to g.title, goal_url(g) %></td>
+    <td><%= g.cheers_count %></td>
+  </tr>
+  <% end %>
+</table>

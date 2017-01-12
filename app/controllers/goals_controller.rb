@@ -42,6 +42,10 @@ class GoalsController < ApplicationController
     redirect_to goal_url(@goal)
   end
 
+  def leaderboard
+    @goals = Goal.top_goals
+  end
+
   private
   def goal_params
     params.require(:goal).permit(:title, :body, :public)

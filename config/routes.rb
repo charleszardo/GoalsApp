@@ -10,9 +10,14 @@ Rails.application.routes.draw do
   resources :goals, only: [:new, :create, :show] do
     resources :comments, only: [:create]
     resources :cheers, only: [:create, :destroy]
+
     member do
       post :complete
       post :incomplete
+    end
+
+    collection do
+      get :leaderboard
     end
   end
 end
