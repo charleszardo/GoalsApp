@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  include Commentable
+
   validates :username, :session_token, presence: true, uniqueness: true
   validates :password_digest, presence: true
   validates :password, length: { minimum: 6, allow_nil: true}
@@ -8,7 +10,6 @@ class User < ActiveRecord::Base
   after_initialize :ensure_session_token
 
   has_many :goals
-  has_many :comments, as: :commentable
   has_many :authored_user_comments, class_name: "UserComment", foreign_key: :author_id
   has_many :authored_goal_comments, class_name: "UserComment", foreign_key: :author_id
 
