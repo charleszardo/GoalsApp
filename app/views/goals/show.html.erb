@@ -1,0 +1,11 @@
+<h3>
+  <%= @goal.title %>
+</h3>
+<h4>
+  by <%= @goal.user.username %>
+</h4>
+<p>
+<%= @goal.body %>
+</p>
+<br>
+<%= link_to "back to #{@goal.user.username}", user_url(@goal.user) %>

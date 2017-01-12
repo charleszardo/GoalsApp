@@ -3,7 +3,7 @@
 <ul>
 <% @user.goals.each do |g| %>
   <% if g.public %>
-    <li><%= g.title %></li>
+    <li><%= link_to g.title, goal_url(g) %></li>
   <% else %>
     <% @private_goals << g %>
   <% end %>
@@ -13,7 +13,7 @@
   <h4>Private Goals</h4>
   <ul>
   <% @private_goals.each do |pg| %>
-    <li><%= pg.title %></li>
+    <li><%= link_to pg.title, goal_url(pg) %></li>
   <% end %>
   </ul>
 <% end %>
