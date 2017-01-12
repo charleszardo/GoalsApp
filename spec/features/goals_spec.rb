@@ -2,7 +2,6 @@ require 'spec_helper'
 require 'rails_helper'
 
 feature "adding goals" do
-
   scenario "user is signed in" do
     visit new_user_url
     fill_in "Username", with: "valid_username"
@@ -74,23 +73,33 @@ feature "public goals" do
     expect(page).to have_content "my title"
   end
 end
-#
-# feature "logging out" do
-#
-#   scenario "begins with a logged out state" do
-#     visit users_url
-#     expect(page).to have_content "Sign Up"
-#     expect(page).to have_content "Sign In"
-#     expect(page).to_not have_content "Welcome"
-#   end
-#
-#   scenario "doesn't show username on the homepage after logout" do
-#     visit new_user_url
-#     fill_in "Username", with: "valid_username"
-#     fill_in "Password", with: "valid_password"
-#     click_on "submit"
-#     click_on "Logout"
-#     expect(page).to_not have_content "Welcome"
-#   end
-#
-# end
+
+feature "completing goals" do
+  before(:each) do
+    visit new_user_url
+    fill_in "Username", with: "user1"
+    fill_in "Password", with: "password"
+    click_on "submit"
+    click_on "Add Goal"
+    fill_in "Title", with: "my title"
+    fill_in "Body", with: "my body"
+    choose "Public"
+    click_on "submit"
+    click_on "my title"
+  end
+
+  scenario "status starts off incomplete" do
+    expect(page).to have_content "incomplete"
+  end
+
+  scenario "status changes to complete" do
+    click_on "complete goal"
+    expect(page).to have_content "complete"
+  end
+
+  scenario "status changes to incomplete" do
+    click_on "complete goal"
+    click_on "goal still in progress"
+    expect(page).to_not have_content "complete"
+  end
+end
