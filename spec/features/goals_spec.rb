@@ -3,15 +3,8 @@ require 'rails_helper'
 
 feature "adding goals" do
   scenario "user is signed in" do
-    visit new_user_url
-    fill_in "Username", with: "valid_username"
-    fill_in "Password", with: "valid_password"
-    click_on "submit"
-    click_on "Add Goal"
-    expect(page).to have_content "Add Goal"
-    fill_in "Title", with: "my title"
-    fill_in "Body", with: "my body"
-    click_on "submit"
+    sign_up_as("valid_username")
+    add_goal("my title", "my body")
     expect(page).to have_content "my title"
   end
 
@@ -23,15 +16,8 @@ end
 
 feature "private goals" do
   before(:each) do
-    visit new_user_url
-    fill_in "Username", with: "user1"
-    fill_in "Password", with: "password"
-    click_on "submit"
-    click_on "Add Goal"
-    fill_in "Title", with: "my title"
-    fill_in "Body", with: "my body"
-    choose "Private"
-    click_on "submit"
+    sign_up_as("user1")
+    add_goal("my title", "my body", "Private")
   end
 
   scenario "goal creator is signed in" do
@@ -40,10 +26,7 @@ feature "private goals" do
 
   scenario "other user is signed in" do
     click_on "Logout"
-    visit new_user_url
-    fill_in "Username", with: "user2"
-    fill_in "Password", with: "password"
-    click_on "submit"
+    sign_up_as("user2")
     visit user_url(User.find_by_username("user1"))
     expect(page).to_not have_content "my title"
   end
@@ -51,24 +34,14 @@ end
 
 feature "public goals" do
   before(:each) do
-    visit new_user_url
-    fill_in "Username", with: "user1"
-    fill_in "Password", with: "password"
-    click_on "submit"
-    click_on "Add Goal"
-    fill_in "Title", with: "my title"
-    fill_in "Body", with: "my body"
-    choose "Public"
-    click_on "submit"
+    sign_up_as("user1")
+    add_goal("my title", "my body", "Public")
   end
 
   scenario "all users" do
     expect(page).to have_content "my title"
     click_on "Logout"
-    visit new_user_url
-    fill_in "Username", with: "user2"
-    fill_in "Password", with: "password"
-    click_on "submit"
+    sign_up_as("user2")
     visit user_url(User.find_by_username("user1"))
     expect(page).to have_content "my title"
   end
@@ -76,15 +49,8 @@ end
 
 feature "completing goals" do
   before(:each) do
-    visit new_user_url
-    fill_in "Username", with: "user1"
-    fill_in "Password", with: "password"
-    click_on "submit"
-    click_on "Add Goal"
-    fill_in "Title", with: "my title"
-    fill_in "Body", with: "my body"
-    choose "Public"
-    click_on "submit"
+    sign_up_as("user1")
+    add_goal("my title", "my body", "Public")
     click_on "my title"
   end
 

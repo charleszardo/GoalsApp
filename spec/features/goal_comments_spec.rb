@@ -3,20 +3,11 @@ require 'rails_helper'
 
 feature "commenting" do
   before(:each) do
-    visit new_user_url
-    fill_in "Username", with: "user1"
-    fill_in "Password", with: "password"
-    click_on "submit"
+    sign_up_as("user1")
     visit new_goal_url
-    fill_in "Title", with: "comment title"
-    fill_in "Body", with: "comment body"
-    choose "Public"
-    click_on "submit"
+    add_goal("comment title", "comment body", "Public")
     click_on "Logout"
-    visit new_user_url
-    fill_in "Username", with: "user2"
-    fill_in "Password", with: "password"
-    click_on "submit"
+    sign_up_as("user2")
   end
 
   scenario "comment on another users" do
@@ -28,10 +19,7 @@ feature "commenting" do
 
   scenario "comment on own goals" do
     click_on "Logout"
-    visit new_session_url
-    fill_in "Username", with: "user1"
-    fill_in "Password", with: "password"
-    click_on "submit"
+    login_as("user1")
     visit goal_url(Goal.find_by_title("comment title"))
     fill_in "Comment", with: "this is my comment"
     click_on "submit"
